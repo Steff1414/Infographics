@@ -7,78 +7,83 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+        /* Approximating Hestra's proprietary fonts:
+           Freight Big Pro -> Playfair Display
+           Neue Haas Grotesk -> Inter
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
-        /* Hestra-inspired Palette */
+        /* Hestra Brand Palette */
         :root {
-            --bg-paper: #f9f8f4;
-            --text-main: #2c241b;
-            --hestra-red: #c24b3b;
-            --leather-brown: #8c7b6c;
-            --forest-green: #3a5f40;
-            --warm-gold: #d4a017;
+            --bg-paper: #f7f5f0;      /* Warm white/beige background */
+            --text-main: #2d2926;     /* Dark charcoal/black */
+            --hestra-red: #a83d2d;    /* The specific Hestra rust red */
+            --gold-accent: #cfae70;   /* Hestra Gold */
+            --warm-grey: #8e7f72;     /* Warm earthy grey */
+            --border-color: #e5e2da;  /* Subtle borders */
         }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-paper);
             color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
+            font-weight: 400; /* Hestra often uses lighter weights for headers */
         }
 
         .header-bg {
-            background-color: #2c241b;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a2e22' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-color: var(--text-main);
+            /* Adding a subtle grain/texture overlay to mimic paper/fabric quality */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
         .card-craft {
             background: white;
-            border: 1px solid #e5e0d8;
-            border-bottom: 3px solid #e5e0d8;
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
         }
 
         .card-craft:hover {
             transform: translateY(-4px);
-            border-bottom-color: var(--hestra-red);
-            box-shadow: 0 10px 30px -10px rgba(44, 36, 27, 0.1);
+            box-shadow: 0 15px 30px -10px rgba(45, 41, 38, 0.08);
+            border-color: var(--gold-accent);
         }
 
         .pill-attribute {
-            background-color: #f4f1ec;
-            color: #5d534a;
-            border: 1px solid #e5e0d8;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             display: inline-flex;
             align-items: center;
             margin-right: 6px;
             margin-bottom: 6px;
+            transition: all 0.2s;
+        }
+
+        .pill-attribute:hover {
+            border-color: var(--hestra-red);
+            color: var(--hestra-red);
         }
 
         .pill-attribute i {
-            margin-right: 6px;
-            color: var(--leather-brown);
+            margin-right: 8px;
+            color: var(--gold-accent);
         }
 
-        .number-badge {
+        .section-divider {
+            width: 60px;
+            height: 2px;
             background-color: var(--hestra-red);
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-style: italic;
+            margin: 20px auto;
         }
 
         /* Custom Scrollbar */
@@ -86,116 +91,127 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: var(--bg-paper);
         }
         ::-webkit-scrollbar-thumb {
-            background: #d1cdc7;
+            background: var(--warm-grey);
             border-radius: 4px;
         }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="p-0 md:p-10">
 
-    <div class="max-w-5xl mx-auto shadow-xl rounded-xl overflow-hidden bg-white">
+    <div class="max-w-6xl mx-auto shadow-2xl md:rounded-sm overflow-hidden bg-white">
 
         <!-- Header -->
-        <header class="header-bg text-white p-12 text-center relative">
+        <header class="header-bg text-white p-16 text-center relative">
             <div class="relative z-10">
-                <div class="inline-block border-b-2 border-yellow-600 pb-1 mb-4 text-yellow-600 text-xs font-bold tracking-widest uppercase">
-                    Our Common Language
+                <div class="inline-block border-b border-white/30 pb-2 mb-6 text-white/80 text-[10px] font-bold tracking-[0.2em] uppercase">
+                    EST. 2026 • CONCEPTUAL MODEL
                 </div>
-                <h1 class="text-4xl md:text-6xl font-medium mb-6 italic tracking-wide">The Product Way</h1>
-                <p class="text-lg text-gray-300 max-w-2xl mx-auto font-light font-sans leading-relaxed">
-                    Just like a good pair of gloves relies on the right materials, our business relies on the right data. Here is how we define our world.
+                <h1 class="text-5xl md:text-7xl mb-6 italic tracking-tight leading-tight">The Product Way</h1>
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed font-serif italic">
+                    "True quality lies in precision. We define our data with the same care we stitch our gloves."
                 </p>
             </div>
         </header>
 
-        <!-- The "Why" Section (Warm & Friendly) -->
-        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-[#e5e0d8]">
-            <div class="md:col-span-4 p-10 border-b md:border-b-0 md:border-r border-[#e5e0d8] bg-[#f9f8f4]">
-                <h3 class="text-[#2c241b] font-bold text-xl mb-3">Why this matters</h3>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                    We want everyone—from the design studio to the warehouse—to speak the same language. When we say "Product," we should all picture the same thing.
+        <!-- The "Why" Section -->
+        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-[#e5e2da]">
+            <div class="md:col-span-4 p-12 border-b md:border-b-0 md:border-r border-[#e5e2da] bg-[#fcfbf9]">
+                <h3 class="text-[#2d2926] text-2xl mb-4 italic">Our Philosophy</h3>
+                <div class="w-10 h-0.5 bg-[#a83d2d] mb-6"></div>
+                <p class="text-sm text-gray-600 leading-7 font-light">
+                    We want everyone—from the design studio in Hestra to the global warehouses—to speak the same language. When we say "Product," we should all picture the same craftsmanship.
                 </p>
-                <div class="text-xs font-bold text-[#c24b3b] uppercase tracking-wide">
-                    <i class="fas fa-heart mr-1"></i> Heart of the Business
-                </div>
             </div>
-            <div class="md:col-span-8 p-10 bg-white">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <i class="fas fa-handshake text-3xl text-[#8c7b6c] mb-3"></i>
-                        <h4 class="font-bold text-[#2c241b] mb-1">Agreement</h4>
-                        <p class="text-xs text-gray-500">Business & IT holding hands.</p>
+            <div class="md:col-span-8 p-12 bg-white flex items-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
+                    <div class="text-center group">
+                        <div class="w-12 h-12 mx-auto rounded-full border border-[#e5e2da] flex items-center justify-center mb-4 group-hover:border-[#a83d2d] transition-colors">
+                            <i class="fas fa-handshake text-xl text-[#cfae70]"></i>
+                        </div>
+                        <h4 class="text-lg text-[#2d2926] mb-2">Agreement</h4>
+                        <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Business & IT</p>
                     </div>
-                    <div class="text-center">
-                        <i class="fas fa-seedling text-3xl text-[#3a5f40] mb-3"></i>
-                        <h4 class="font-bold text-[#2c241b] mb-1">Growth</h4>
-                        <p class="text-xs text-gray-500">Ready for future collections.</p>
+                    <div class="text-center group">
+                        <div class="w-12 h-12 mx-auto rounded-full border border-[#e5e2da] flex items-center justify-center mb-4 group-hover:border-[#a83d2d] transition-colors">
+                            <i class="fas fa-seedling text-xl text-[#cfae70]"></i>
+                        </div>
+                        <h4 class="text-lg text-[#2d2926] mb-2">Growth</h4>
+                        <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Future Ready</p>
                     </div>
-                    <div class="text-center">
-                        <i class="fas fa-compass text-3xl text-[#c24b3b] mb-3"></i>
-                        <h4 class="font-bold text-[#2c241b] mb-1">Clarity</h4>
-                        <p class="text-xs text-gray-500">Clear navigation for everyone.</p>
+                    <div class="text-center group">
+                        <div class="w-12 h-12 mx-auto rounded-full border border-[#e5e2da] flex items-center justify-center mb-4 group-hover:border-[#a83d2d] transition-colors">
+                            <i class="fas fa-compass text-xl text-[#cfae70]"></i>
+                        </div>
+                        <h4 class="text-lg text-[#2d2926] mb-2">Clarity</h4>
+                        <p class="text-xs text-gray-500 font-light uppercase tracking-wider">Global View</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- The Ground Rules (Phase 2) -->
-        <section class="p-10 bg-[#f4f1ec]">
-            <h2 class="text-3xl text-center mb-10 text-[#2c241b] italic">The Ground Rules</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section class="p-12 md:p-16 bg-[#f7f5f0]">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl text-[#2d2926] italic mb-2">The Ground Rules</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Rule 1 -->
-                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-[#c24b3b]">
-                    <h4 class="font-bold text-lg mb-2">1. The Product</h4>
-                    <p class="text-sm text-gray-600">A "Product" isn't just a style name. It's the specific thing you buy: <span class="font-bold text-[#c24b3b]">Style + Colour + Size</span>.</p>
+                <div class="bg-white p-8 border-t-2 border-[#a83d2d] shadow-sm">
+                    <span class="text-[#a83d2d] font-bold text-lg block mb-2">01.</span>
+                    <h4 class="text-xl mb-3">The Product</h4>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed">It is not just a model name. It is the specific item: <span class="font-medium text-[#2d2926]">Style + Colour + Size</span>.</p>
                 </div>
                 <!-- Rule 2 -->
-                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-[#3a5f40]">
-                    <h4 class="font-bold text-lg mb-2">2. The Name vs ID</h4>
-                    <p class="text-sm text-gray-600">The <strong>Article/SKU</strong> is just a tracking number. It's not the product's soul; it's just its passport number.</p>
+                <div class="bg-white p-8 border-t-2 border-[#8e7f72] shadow-sm">
+                    <span class="text-[#8e7f72] font-bold text-lg block mb-2">02.</span>
+                    <h4 class="text-xl mb-3">Name vs ID</h4>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed">The <strong>Article/SKU</strong> is just a tracking number. It is the passport number, not the person.</p>
                 </div>
                 <!-- Rule 3 -->
-                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-[#8c7b6c]">
-                    <h4 class="font-bold text-lg mb-2">3. Ingredients</h4>
-                    <p class="text-sm text-gray-600">Colour and Size are <strong>dimensions</strong> (ingredients) of the product, not separate products themselves.</p>
+                <div class="bg-white p-8 border-t-2 border-[#cfae70] shadow-sm">
+                    <span class="text-[#cfae70] font-bold text-lg block mb-2">03.</span>
+                    <h4 class="text-xl mb-3">Dimensions</h4>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed">Colour and Size are <strong>ingredients</strong> of the product, not separate products themselves.</p>
                 </div>
                 <!-- Rule 4 -->
-                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-[#d4a017]">
-                    <h4 class="font-bold text-lg mb-2">4. Grouping</h4>
-                    <p class="text-sm text-gray-600">Everything is organized using one simple system: <strong>Classifications</strong>. Like sorting socks, but smarter.</p>
+                <div class="bg-white p-8 border-t-2 border-[#2d2926] shadow-sm">
+                    <span class="text-[#2d2926] font-bold text-lg block mb-2">04.</span>
+                    <h4 class="text-xl mb-3">Grouping</h4>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed">Everything is sorted via <strong>Classifications</strong>. Like organizing the finest leather hides.</p>
                 </div>
             </div>
         </section>
 
         <!-- The Building Blocks (Phase 3) -->
-        <section class="p-10 md:p-14 bg-white">
-            <div class="text-center mb-12">
-                <span class="text-[#c24b3b] font-bold tracking-widest text-xs uppercase mb-2 block">The Essentials</span>
-                <h2 class="text-4xl text-[#2c241b] italic">Our Building Blocks</h2>
+        <section class="p-12 md:p-16 bg-white">
+            <div class="text-center mb-16">
+                <span class="text-[#a83d2d] font-bold tracking-[0.2em] text-[10px] uppercase mb-3 block">Data Structure</span>
+                <h2 class="text-5xl text-[#2d2926] italic">Building Blocks</h2>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                 <!-- Product Card -->
-                <div class="card-craft rounded-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-[#c24b3b]"></div>
-                    <div class="flex justify-between items-start mb-6">
+                <div class="card-craft p-10 relative group">
+                    <div class="flex justify-between items-start mb-8">
                         <div>
-                            <h3 class="text-2xl font-bold text-[#2c241b]">Product</h3>
-                            <span class="text-[#8c7b6c] text-xs font-bold uppercase tracking-wide">The Sellable Item</span>
+                            <h3 class="text-3xl text-[#2d2926] mb-1">Product</h3>
+                            <span class="text-[#8e7f72] text-[10px] font-bold uppercase tracking-widest border-b border-[#cfae70] pb-1">The Sellable Item</span>
                         </div>
-                        <i class="fas fa-box-open text-3xl text-[#e5e0d8]"></i>
+                        <i class="fas fa-box-open text-3xl text-[#e5e2da] group-hover:text-[#a83d2d] transition-colors"></i>
                     </div>
                     
-                    <p class="text-gray-600 italic mb-6 leading-relaxed">
-                        "This is the pair of gloves the customer holds in their hands. It is defined by its specific look (colour) and fit (size)."
+                    <p class="text-gray-600 font-serif italic text-lg mb-8 leading-relaxed">
+                        "The pair of gloves the customer holds. Defined by its unique look (colour) and fit (size)."
                     </p>
 
-                    <div class="mb-6">
-                        <div class="text-xs font-bold text-[#2c241b] uppercase mb-3">Inside this box (Attributes):</div>
+                    <div class="mb-8">
+                        <div class="text-[10px] font-bold text-[#2d2926] uppercase tracking-widest mb-4 opacity-60">Defining Attributes</div>
                         <div class="flex flex-wrap">
                             <span class="pill-attribute"><i class="fas fa-palette"></i> Colour</span>
                             <span class="pill-attribute"><i class="fas fa-ruler"></i> Size</span>
@@ -204,163 +220,129 @@
                         </div>
                     </div>
 
-                    <div class="bg-[#f9f8f4] p-4 rounded text-sm text-[#5d534a] border border-[#e5e0d8] flex items-center gap-3">
-                        <span class="font-bold">Eg:</span> Heli Ski - Grey - Size 9
+                    <div class="bg-[#f7f5f0] p-4 text-xs text-[#5d534a] border-l-2 border-[#a83d2d] font-mono">
+                        <span class="font-bold text-[#2d2926]">EX:</span> Heli Ski - Grey - Size 9
                     </div>
                 </div>
 
                 <!-- Article Card -->
-                <div class="card-craft rounded-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-[#2c241b]"></div>
-                    <div class="flex justify-between items-start mb-6">
+                <div class="card-craft p-10 relative group">
+                    <div class="flex justify-between items-start mb-8">
                         <div>
-                            <h3 class="text-2xl font-bold text-[#2c241b]">Article (SKU)</h3>
-                            <span class="text-[#8c7b6c] text-xs font-bold uppercase tracking-wide">The Logistic ID</span>
+                            <h3 class="text-3xl text-[#2d2926] mb-1">Article (SKU)</h3>
+                            <span class="text-[#8e7f72] text-[10px] font-bold uppercase tracking-widest border-b border-[#cfae70] pb-1">The Logistic ID</span>
                         </div>
-                        <i class="fas fa-barcode text-3xl text-[#e5e0d8]"></i>
+                        <i class="fas fa-barcode text-3xl text-[#e5e2da] group-hover:text-[#a83d2d] transition-colors"></i>
                     </div>
                     
-                    <p class="text-gray-600 italic mb-6 leading-relaxed">
-                        "The technical ID for the warehouse. Think of it as the barcode sticker. It points to the Product, but it isn't the Product."
+                    <p class="text-gray-600 font-serif italic text-lg mb-8 leading-relaxed">
+                        "The technical ID for the warehouse. It points to the Product, but it isn't the Product itself."
                     </p>
 
-                    <div class="mb-6">
-                        <div class="text-xs font-bold text-[#2c241b] uppercase mb-3">Inside this box (Attributes):</div>
+                    <div class="mb-8">
+                        <div class="text-[10px] font-bold text-[#2d2926] uppercase tracking-widest mb-4 opacity-60">Defining Attributes</div>
                         <div class="flex flex-wrap">
-                            <span class="pill-attribute"><i class="fas fa-fingerprint"></i> Article Number</span>
+                            <span class="pill-attribute"><i class="fas fa-fingerprint"></i> Article No</span>
                             <span class="pill-attribute"><i class="fas fa-barcode"></i> SKU</span>
                         </div>
                     </div>
 
-                    <div class="bg-[#f9f8f4] p-4 rounded text-sm text-[#5d534a] border border-[#e5e0d8] flex items-center gap-3">
-                        <span class="font-bold">Eg:</span> 123456-GR-09
+                    <div class="bg-[#f7f5f0] p-4 text-xs text-[#5d534a] border-l-2 border-[#2d2926] font-mono">
+                        <span class="font-bold text-[#2d2926]">EX:</span> 123456-GR-09
                     </div>
                 </div>
 
                 <!-- Collection Card -->
-                <div class="card-craft rounded-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-[#d4a017]"></div>
-                    <div class="flex justify-between items-start mb-6">
+                <div class="card-craft p-10 relative group">
+                    <div class="flex justify-between items-start mb-8">
                         <div>
-                            <h3 class="text-2xl font-bold text-[#2c241b]">Collection</h3>
-                            <span class="text-[#8c7b6c] text-xs font-bold uppercase tracking-wide">The Family</span>
+                            <h3 class="text-3xl text-[#2d2926] mb-1">Collection</h3>
+                            <span class="text-[#8e7f72] text-[10px] font-bold uppercase tracking-widest border-b border-[#cfae70] pb-1">The Family</span>
                         </div>
-                        <i class="fas fa-users text-3xl text-[#e5e0d8]"></i>
+                        <i class="fas fa-users text-3xl text-[#e5e2da] group-hover:text-[#a83d2d] transition-colors"></i>
                     </div>
                     
-                    <p class="text-gray-600 italic mb-6 leading-relaxed">
-                        "A long-term home for products. Whether it's for 'Alpine Pro' or 'Dress', this tells us the product's purpose and style."
+                    <p class="text-gray-600 font-serif italic text-lg mb-8 leading-relaxed">
+                        "A long-term home for products. Tells us the product's purpose, whether 'Alpine Pro' or 'Dress'."
                     </p>
 
-                    <div class="mb-6">
-                        <div class="text-xs font-bold text-[#2c241b] uppercase mb-3">Inside this box (Attributes):</div>
+                    <div class="mb-8">
+                        <div class="text-[10px] font-bold text-[#2d2926] uppercase tracking-widest mb-4 opacity-60">Defining Attributes</div>
                         <div class="flex flex-wrap">
                             <span class="pill-attribute"><i class="fas fa-font"></i> Name</span>
                             <span class="pill-attribute"><i class="fas fa-compass"></i> Purpose</span>
                         </div>
                     </div>
 
-                    <div class="bg-[#f9f8f4] p-4 rounded text-sm text-[#5d534a] border border-[#e5e0d8] flex items-center gap-3">
-                        <span class="font-bold">Eg:</span> Alpine Pro, Sport
+                    <div class="bg-[#f7f5f0] p-4 text-xs text-[#5d534a] border-l-2 border-[#cfae70] font-mono">
+                        <span class="font-bold text-[#2d2926]">EX:</span> Alpine Pro, Sport
                     </div>
                 </div>
 
                 <!-- Season Card -->
-                <div class="card-craft rounded-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-[#3a5f40]"></div>
-                    <div class="flex justify-between items-start mb-6">
+                <div class="card-craft p-10 relative group">
+                    <div class="flex justify-between items-start mb-8">
                         <div>
-                            <h3 class="text-2xl font-bold text-[#2c241b]">Season</h3>
-                            <span class="text-[#8c7b6c] text-xs font-bold uppercase tracking-wide">The Time</span>
+                            <h3 class="text-3xl text-[#2d2926] mb-1">Season</h3>
+                            <span class="text-[#8e7f72] text-[10px] font-bold uppercase tracking-widest border-b border-[#cfae70] pb-1">The Time</span>
                         </div>
-                        <i class="fas fa-calendar-alt text-3xl text-[#e5e0d8]"></i>
+                        <i class="fas fa-calendar-alt text-3xl text-[#e5e2da] group-hover:text-[#a83d2d] transition-colors"></i>
                     </div>
                     
-                    <p class="text-gray-600 italic mb-6 leading-relaxed">
-                        "When is this product relevant? Seasons come and go, helping us plan launches and manage relevance over time."
+                    <p class="text-gray-600 font-serif italic text-lg mb-8 leading-relaxed">
+                        "When is this relevant? Seasons help us plan launches and manage relevance over time."
                     </p>
 
-                    <div class="mb-6">
-                        <div class="text-xs font-bold text-[#2c241b] uppercase mb-3">Inside this box (Attributes):</div>
+                    <div class="mb-8">
+                        <div class="text-[10px] font-bold text-[#2d2926] uppercase tracking-widest mb-4 opacity-60">Defining Attributes</div>
                         <div class="flex flex-wrap">
                             <span class="pill-attribute"><i class="fas fa-code"></i> Code</span>
                             <span class="pill-attribute"><i class="fas fa-clock"></i> Year</span>
                         </div>
                     </div>
 
-                    <div class="bg-[#f9f8f4] p-4 rounded text-sm text-[#5d534a] border border-[#e5e0d8] flex items-center gap-3">
-                        <span class="font-bold">Eg:</span> Autumn/Winter 2026
+                    <div class="bg-[#f7f5f0] p-4 text-xs text-[#5d534a] border-l-2 border-[#8e7f72] font-mono">
+                        <span class="font-bold text-[#2d2926]">EX:</span> AW 2026
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- Simplified Data Explainer -->
-        <section class="bg-[#f9f8f4] border-t border-[#e5e0d8] p-10 md:p-14">
-            <div class="max-w-3xl mx-auto text-center mb-10">
-                <h2 class="text-3xl font-medium text-[#2c241b] italic mb-4">How to read our data</h2>
-                <p class="text-gray-600">Think of our data model like a well-organized workshop.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-6">
-                <!-- Attributes -->
-                <div class="bg-white p-8 rounded shadow-sm border border-[#e5e0d8] flex-1 text-center">
-                    <div class="w-12 h-12 bg-[#f4f1ec] rounded-full flex items-center justify-center text-[#8c7b6c] mx-auto mb-4 text-xl">
-                        <i class="fas fa-tag"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#2c241b] mb-2">Attributes</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest text-[#c24b3b] mb-4">"The Label"</p>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        This is the information written <strong>on the tag</strong>. It describes the item itself. <br>
-                        <em>(e.g., "Size 9", "Goat Leather")</em>
-                    </p>
-                </div>
-
-                <!-- Relationships -->
-                <div class="bg-white p-8 rounded shadow-sm border border-[#e5e0d8] flex-1 text-center">
-                    <div class="w-12 h-12 bg-[#f4f1ec] rounded-full flex items-center justify-center text-[#8c7b6c] mx-auto mb-4 text-xl">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#2c241b] mb-2">Relationships</h3>
-                    <p class="text-xs font-bold uppercase tracking-widest text-[#3a5f40] mb-4">"The Shelf"</p>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        This is <strong>where it belongs</strong> in the workshop. It connects the item to other groups. <br>
-                        <em>(e.g., "Placed in Alpine Collection")</em>
-                    </p>
-                </div>
             </div>
         </section>
 
         <!-- Descriptive Details -->
-        <section class="p-10 md:p-14 bg-white">a
+        <section class="p-12 md:p-16 bg-[#f7f5f0] border-t border-[#e5e2da]">
              <div class="text-center mb-12">
-                <h2 class="text-3xl text-[#2c241b] italic">The Fine Details</h2>
+                <h2 class="text-3xl text-[#2d2926] italic">The Fine Details</h2>
+                <p class="text-sm font-light text-gray-500 mt-2">The small things that make the big difference.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 bg-[#fcfbf9] border border-[#f1f1f1] rounded text-center">
-                     <i class="fas fa-star text-2xl text-[#d4a017] mb-3"></i>
-                    <h4 class="font-bold text-[#2c241b] mb-1">Features</h4>
-                    <p class="text-xs text-gray-500">What makes it special? <br>(Waterproof, Heated)</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white border border-[#e5e2da] text-center shadow-sm">
+                     <i class="fas fa-star text-2xl text-[#cfae70] mb-4"></i>
+                    <h4 class="text-xl text-[#2d2926] mb-2">Features</h4>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider">Functionality</p>
+                    <p class="text-sm text-gray-600 mt-3 font-light">Waterproof, Heated, Touch-screen compatible.</p>
                 </div>
-                <div class="p-6 bg-[#fcfbf9] border border-[#f1f1f1] rounded text-center">
-                    <i class="fas fa-layer-group text-2xl text-[#8c7b6c] mb-3"></i>
-                    <h4 class="font-bold text-[#2c241b] mb-1">Material</h4>
-                    <p class="text-xs text-gray-500">What is it made of? <br>(Leather, Wool, Gore-Tex)</p>
+                <div class="p-8 bg-white border border-[#e5e2da] text-center shadow-sm">
+                    <i class="fas fa-layer-group text-2xl text-[#8e7f72] mb-4"></i>
+                    <h4 class="text-xl text-[#2d2926] mb-2">Material</h4>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider">Composition</p>
+                    <p class="text-sm text-gray-600 mt-3 font-light">Army Leather, Triton, Elk Split, Wool.</p>
                 </div>
-                <div class="p-6 bg-[#fcfbf9] border border-[#f1f1f1] rounded text-center">
-                    <i class="fas fa-camera text-2xl text-[#2c241b] mb-3"></i>
-                    <h4 class="font-bold text-[#2c241b] mb-1">Media</h4>
-                    <p class="text-xs text-gray-500">How does it look? <br>(Photos, Videos)</p>
+                <div class="p-8 bg-white border border-[#e5e2da] text-center shadow-sm">
+                    <i class="fas fa-camera text-2xl text-[#2d2926] mb-4"></i>
+                    <h4 class="text-xl text-[#2d2926] mb-2">Media</h4>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider">Visuals</p>
+                    <p class="text-sm text-gray-600 mt-3 font-light">Studio shots, Lifestyle images, Videos.</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="text-center p-12 bg-[#2c241b] text-[#8c7b6c] text-xs">
-            <p class="mb-2 uppercase tracking-widest font-bold">Product Domain Model</p>
-            <p>Crafted for Hestra • Based on "Product domain.pdf"</p>
+        <footer class="text-center p-16 bg-[#2d2926] text-[#cfae70]">
+            <p class="text-[10px] uppercase tracking-[0.2em] font-bold mb-4 opacity-80">Product Domain Model</p>
+            <div class="w-10 h-0.5 bg-[#a83d2d] mx-auto mb-6"></div>
+            <p class="font-serif italic text-white/60">Crafted for Hestra • Est. 1936</p>
         </footer>
 
     </div>
