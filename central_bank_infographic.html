@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralbankens Oberoende - Grunden för Ekonomisk Stabilitet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-paper: #f8fafc;
+            --text-main: #1e293b;
+            --central-blue: #1e40af;
+            --warning-red: #dc2626;
+            --stability-green: #059669;
+            --gold-accent: #d97706;
+            --neutral-gray: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 50%, #fef3c7 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3730a3 100%);
+        }
+
+        .card-modern {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chain-step {
+            position: relative;
+        }
+
+        .chain-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -24px;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warning-red), #f97316);
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .chain-step:not(:last-child)::after {
+                top: auto;
+                bottom: -24px;
+                right: 50%;
+                width: 3px;
+                height: 48px;
+                background: linear-gradient(180deg, var(--warning-red), #f97316);
+                transform: translateX(50%);
+            }
+        }
+
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .balance-scale {
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="max-w-5xl mx-auto">
+
+        <!-- Header -->
+        <header class="header-gradient text-white p-10 md:p-14 rounded-t-2xl text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                    <rect width="100" height="100" fill="url(#grid)"/>
+                </svg>
+            </div>
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full mb-6">
+                    <i class="fas fa-landmark"></i>
+                    <span class="text-sm font-semibold tracking-wide uppercase">Ekonomisk Insikt</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Centralbankens<br><span class="italic text-amber-300">Oberoende</span>
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto font-light leading-relaxed">
+                    Grunden för de starkaste och mest stabila ekonomierna i världen
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content Card -->
+        <div class="bg-white rounded-b-2xl shadow-xl overflow-hidden">
+
+            <!-- Key Statement -->
+            <section class="p-8 md:p-12 bg-gradient-to-r from-emerald-50 to-blue-50 border-b border-gray-100">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-shrink-0">
+                        <div class="w-24 h-24 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg pulse-icon">
+                            <i class="fas fa-shield-alt text-4xl text-white"></i>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3 italic">
+                            "De starkaste ekonomierna har oberoende centralbanker"
+                        </h2>
+                        <p class="text-gray-600 text-lg">
+                            En centralbank fri från politisk påverkan är nyckeln till långsiktig ekonomisk stabilitet och välstånd.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Problem Section -->
+            <section class="p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <span class="inline-block bg-red-100 text-red-700 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-3">
+                        Problemet
+                    </span>
+                    <h2 class="text-3xl md:text-4xl text-gray-800 italic">Politikens Frestelse</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="card-modern p-8 border-l-4 border-amber-500">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user-tie text-2xl text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Politikerns Dilemma</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Varje politiker skulle vilja <strong class="text-amber-600">sänka räntorna</strong> för att stimulera ekonomin.
+                                    Det ger snabba resultat och nöjda väljare på kort sikt.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl">
+                        <div class="flex items-center justify-center gap-6">
+                            <div class="text-center">
+                                <div class="stat-number text-amber-500">+</div>
+                                <p class="text-sm text-gray-600 font-medium">Pengar</p>
+                            </div>
+                            <div class="text-4xl text-gray-400">></div>
+                            <div class="text-center">
+                                <div class="stat-number text-blue-500">-</div>
+                                <p class="text-sm text-gray-600 font-medium">Varor</p>
+                            </div>
+                            <div class="text-4xl text-gray-400">=</div>
+                            <div class="text-center">
+                                <div class="stat-number text-red-500"><i class="fas fa-fire"></i></div>
+                                <p class="text-sm text-gray-600 font-medium">Inflation</p>
+                            </div>
+                        </div>
+                        <p class="text-center text-gray-500 mt-4 text-sm">
+                            För mycket pengar jagande för få varor
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chain Reaction -->
+            <section class="p-8 md:p-12 bg-gradient-to-r from-red-50 via-orange-50 to-amber-50">
+                <div class="text-center mb-10">
+                    <span class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-3">
+                        Kedjereaktion
+                    </span>
+                    <h2 class="text-3xl md:text-4xl text-gray-800 italic">Vägen till Ekonomisk Kris</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-12">
+                    <!-- Step 1 -->
+                    <div class="chain-step">
+                        <div class="card-modern p-6 text-center h-full border-t-4 border-amber-500">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-amber-600 font-bold text-xl">1</span>
+                            </div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-amber-50 rounded-full flex items-center justify-center">
+                                <i class="fas fa-percentage text-3xl text-amber-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Sänkta Räntor</h4>
+                            <p class="text-sm text-gray-600">Billiga lån pumpar in pengar i ekonomin</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="chain-step">
+                        <div class="card-modern p-6 text-center h-full border-t-4 border-orange-500">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-orange-600 font-bold text-xl">2</span>
+                            </div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-orange-50 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-line text-3xl text-orange-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Inflation</h4>
+                            <p class="text-sm text-gray-600">Priserna stiger när efterfrågan överstiger utbudet</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="chain-step">
+                        <div class="card-modern p-6 text-center h-full border-t-4 border-red-500">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-red-600 font-bold text-xl">3</span>
+                            </div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-red-50 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-3xl text-red-500"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Panikköp</h4>
+                            <p class="text-sm text-gray-600">Folk köper innan priserna stiger ännu mer</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="chain-step">
+                        <div class="card-modern p-6 text-center h-full border-t-4 border-red-700">
+                            <div class="w-12 h-12 bg-red-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-red-700 font-bold text-xl">4</span>
+                            </div>
+                            <div class="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-bomb text-3xl text-red-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Tappad Kontroll</h4>
+                            <p class="text-sm text-gray-600">Ekonomin spiralerar utom kontroll</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Solution -->
+            <section class="p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider mb-3">
+                        Lösningen
+                    </span>
+                    <h2 class="text-3xl md:text-4xl text-gray-800 italic">Oberoende Centralbank</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Pillar 1 -->
+                    <div class="card-modern p-8 text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-gavel text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Beslut utan Politik</h3>
+                        <p class="text-gray-600">
+                            Räntebeslut baseras på ekonomiska data, inte på politiska agendor eller valcykler.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="card-modern p-8 text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-balance-scale text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Prisstabilitet</h3>
+                        <p class="text-gray-600">
+                            Fokus på långsiktig stabilitet skyddar köpkraften och sparandet för alla medborgare.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="card-modern p-8 text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-handshake text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Förtroende</h3>
+                        <p class="text-gray-600">
+                            Marknader och investerare litar på att besluten är långsiktigt sunda.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Comparison -->
+            <section class="p-8 md:p-12 bg-gray-50">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Without Independence -->
+                    <div class="bg-white rounded-2xl p-8 border-2 border-red-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-red-100 rounded-bl-full opacity-50"></div>
+                        <div class="relative">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-times text-red-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Utan Oberoende</h3>
+                            </div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-down text-red-500 mt-1"></i>
+                                    <span class="text-gray-600">Kortisiktiga politiska beslut</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-down text-red-500 mt-1"></i>
+                                    <span class="text-gray-600">Inflationstryck inför val</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-down text-red-500 mt-1"></i>
+                                    <span class="text-gray-600">Urholkad köpkraft</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-down text-red-500 mt-1"></i>
+                                    <span class="text-gray-600">Ekonomisk instabilitet</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- With Independence -->
+                    <div class="bg-white rounded-2xl p-8 border-2 border-emerald-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-100 rounded-bl-full opacity-50"></div>
+                        <div class="relative">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-emerald-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Med Oberoende</h3>
+                            </div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-up text-emerald-500 mt-1"></i>
+                                    <span class="text-gray-600">Långsiktiga, datadrivna beslut</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-up text-emerald-500 mt-1"></i>
+                                    <span class="text-gray-600">Stabil och förutsägbar inflation</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-up text-emerald-500 mt-1"></i>
+                                    <span class="text-gray-600">Skyddad köpkraft</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-arrow-up text-emerald-500 mt-1"></i>
+                                    <span class="text-gray-600">Robust ekonomisk tillväxt</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Takeaway -->
+            <section class="p-8 md:p-12 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+                <div class="max-w-3xl mx-auto text-center">
+                    <i class="fas fa-lightbulb text-4xl text-amber-400 mb-6"></i>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 italic">
+                        Slutsats
+                    </h2>
+                    <p class="text-xl text-blue-100 leading-relaxed mb-8">
+                        En oberoende centralbank fungerar som en <strong class="text-white">väktare</strong> mot politiska frestelser
+                        som kan destabilisera ekonomin. Det är därför världens mest framgångsrika ekonomier
+                        skyddar denna institution.
+                    </p>
+                    <div class="inline-flex items-center gap-4 bg-white/10 backdrop-blur px-6 py-3 rounded-full">
+                        <i class="fas fa-landmark text-amber-400"></i>
+                        <span class="font-semibold">Oberoende = Stabilitet = Välstånd</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="text-center p-8 bg-gray-100 text-gray-500 text-sm">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <i class="fas fa-chart-pie text-blue-600"></i>
+                    <span class="font-semibold text-gray-700">Ekonomisk Infografik</span>
+                </div>
+                <p>Centralbankers roll i ekonomisk stabilitet</p>
+            </footer>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
